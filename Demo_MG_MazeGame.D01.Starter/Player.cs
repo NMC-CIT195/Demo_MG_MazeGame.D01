@@ -25,10 +25,9 @@ namespace Demo_MG_MazeGame
         #region FIELDS
 
         private ContentManager _contentManager;
-        private Texture2D _spriteRight;
-        private Texture2D _spriteLeft;
         private int _spriteWidth;
         private int _spriteHeight;
+        private Texture2D _sprite;
         private Vector2 _position;
         private Vector2 _center;
         private int _speedHorizontal;
@@ -112,12 +111,11 @@ namespace Demo_MG_MazeGame
             _contentManager = contentManager;
             _position = position;
 
-            // load the Player images in for the different directions of travel
-            _spriteLeft = _contentManager.Load<Texture2D>("player_left");
-            _spriteRight = _contentManager.Load<Texture2D>("player_right");
+            // load the Player image
+            _sprite = _contentManager.Load<Texture2D>("player");
 
-            _spriteWidth = _spriteLeft.Width;
-            _spriteHeight = _spriteLeft.Height;
+            _spriteWidth = _sprite.Width;
+            _spriteHeight = _sprite.Height;
 
             // set the initial center and bounding rectangle for the Player
             _center = new Vector2(position.X + (_spriteWidth / 2), position.Y + (_spriteHeight / 2));
@@ -137,14 +135,7 @@ namespace Demo_MG_MazeGame
             // only draw the Player if it is active
             if (_active)
             {
-                if (_DirectionOfTravel == Direction.Right)
-                {
-                    spriteBatch.Draw(_spriteRight, _position, Color.White);                    
-                }
-                else
-                {
-                    spriteBatch.Draw(_spriteLeft, _position, Color.White);     
-                }
+                    spriteBatch.Draw(_sprite, _position, Color.White);                    
             }
         }
 
